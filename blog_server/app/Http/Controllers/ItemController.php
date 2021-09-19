@@ -47,7 +47,7 @@ class ItemController extends Controller
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'title' => 'required',
-            'text_s' => 'required|max:200',
+            'text_s' => 'required|max:500',
             'text_l' => 'required|max:2000',
             'image' => 'required'
         ]);
@@ -88,7 +88,7 @@ class ItemController extends Controller
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'title' => 'required',
-            'text_s' => 'required|max:200',
+            'text_s' => 'required|max:500',
             'text_l' => 'required|max:2000',
             'image' => 'required'
         ]);
