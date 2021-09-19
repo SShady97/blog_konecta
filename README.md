@@ -7,7 +7,7 @@ $docker-compose up --build
 $docker-compose exec app php artisan migrate:fresh --seed
 
 URL:
-http://localhost:3000
+http://localhost:3005
 
 Usuario administrador: joseez182@gmail.com - Contraseña: Prueba1234
 
