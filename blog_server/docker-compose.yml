@@ -1,0 +1,60 @@
+version: "3.3"
+services:
+  ui:
+    build:
+      context: ../blog_client
+      dockerfile: Dockerfile
+    container_name: prueba-ui
+    image: prueba-ui
+    ports:
+        - 3005:80
+    networks:
+        - prueba
+
+  app:
+    build:
+      args:
+        user: jose
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: prueba
+    container_name: prueba-api
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - prueba
+
+  db:
+    image: mysql:5.7
+    container_name: prueba-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: prueba
+      MYSQL_ROOT_PASSWORD: prueba
+      MYSQL_PASSWORD: prueba
+      MYSQL_USER: prueba
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - prueba
+
+  nginx:
+    image: nginx:alpine
+    container_name: prueba-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - prueba
+
+networks:
+  prueba:
+    driver: bridge
