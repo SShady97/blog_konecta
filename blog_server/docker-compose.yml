@@ -7,7 +7,7 @@ services:
     container_name: prueba-ui
     image: prueba-ui
     ports:
-        - 3005:80
+        - 3005:81
     networks:
         - prueba
 
