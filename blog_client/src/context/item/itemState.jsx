@@ -57,10 +57,9 @@ const ItemState = props => {
          
             console.log(resultNewItem);
 
-            dispatch({
-                type: NEW_ITEM,
-                payload: resultNewItem.item
-            });
+            if(resultNewItem.status === 201){
+                getAllItems();
+            };
             
         } catch (error) {
             console.log(error);
