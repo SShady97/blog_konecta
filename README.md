@@ -1,3 +1,5 @@
+Proyecto listo para ejecutar con Docker si se desea:
+
 1. Dentro del directorio blog_server ejecutar el siguiente comando:   
 $docker-compose up --build
 
